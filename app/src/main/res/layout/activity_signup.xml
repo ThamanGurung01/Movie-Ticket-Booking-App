@@ -16,6 +16,11 @@
         android:text="@string/heading"
         android:textSize="40sp"
         android:textStyle="bold" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        >
     <EditText
         android:id="@+id/inputName"
         android:layout_width="match_parent"
@@ -24,6 +29,12 @@
         android:hint="@string/name"
         android:inputType="text"
         android:textSize="25sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        >
     <EditText
         android:id="@+id/inputEmail"
         android:layout_width="match_parent"
@@ -32,7 +43,12 @@
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:textSize="25sp" />
-
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        >
     <EditText
         android:id="@+id/inputPassword"
         android:layout_width="match_parent"
@@ -41,7 +57,16 @@
         android:hint="@string/password"
         android:inputType="textPassword"
         android:textSize="25sp" />
-
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:id="@+id/createAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/existingAccount"
+        android:textSize="25sp"
+        android:textColor="#495FCC"
+        />
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="match_parent"
@@ -49,5 +74,4 @@
         android:layout_marginTop="20dp"
         android:text="@string/signup"
         android:textSize="25sp" />
-
 </LinearLayout>
