@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/activity_home"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,18 +8,21 @@
     android:orientation="vertical"
     android:gravity="center">
     <Button
+        android:id="@+id/btnLoginPage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/login"
         />
     <Button
+        android:id="@+id/btnSignupPage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/signup"
         />
     <Button
+        android:id="@+id/btnDashboardPage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dashboard"
+        android:text="@string/dashboard"
         />
 </LinearLayout>

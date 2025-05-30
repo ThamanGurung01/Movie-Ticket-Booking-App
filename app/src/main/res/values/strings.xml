@@ -8,4 +8,5 @@
     <string name="heading">Movie Booking App</string>
     <string name="createAccount">Don\'t have an Account? Sign up</string>
     <string name="existingAccount">Have an Account? Log In</string>
+    <string name="dashboard">Dashboard</string>
 </resources>
