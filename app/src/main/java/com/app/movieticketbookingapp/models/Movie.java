@@ -1,4 +1,6 @@
-package com.app.movieticketbookingapp;
+package com.app.movieticketbookingapp.models;
+
+import com.google.firebase.Timestamp;
 
 import java.util.List;
 
@@ -9,15 +11,17 @@ public class Movie {
     private int duration;
     private String description;
     private List<String> genres;
+    private Timestamp createdAt;
     public Movie() {}
 
-    public Movie(String title, int year, String language, int duration, String description, List<String> genres) {
+    public Movie(String title, int year, String language, int duration, String description, List<String> genres,Timestamp createdAt) {
         this.title = title;
         this.year = year;
         this.language = language;
         this.duration = duration;
         this.description = description;
         this.genres = genres;
+        this.createdAt = createdAt;
     }
 
     // Getters and setters
@@ -67,5 +71,13 @@ public class Movie {
 
     public void setGenres(List<String> genres) {
         this.genres = genres;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 }

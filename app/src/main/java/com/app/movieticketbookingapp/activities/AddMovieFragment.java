@@ -1,17 +1,18 @@
-package com.app.movieticketbookingapp;
+package com.app.movieticketbookingapp.activities;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.*;
 import android.widget.*;
 import androidx.annotation.*;
 import androidx.fragment.app.DialogFragment;
+
+import com.app.movieticketbookingapp.models.Movie;
+import com.app.movieticketbookingapp.R;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class AddMovieFragment extends DialogFragment {
     @Override
@@ -83,7 +84,8 @@ public class AddMovieFragment extends DialogFragment {
                         movieLanguage,
                         Integer.parseInt(movieDuration),
                         movieDescription,
-                        selectedList
+                        selectedList,
+                        Timestamp.now()
                 );
                 db.collection("movies").add(movie).addOnSuccessListener(documentReference -> {
                     Toast.makeText(getContext(), "Movie added!", Toast.LENGTH_SHORT).show();

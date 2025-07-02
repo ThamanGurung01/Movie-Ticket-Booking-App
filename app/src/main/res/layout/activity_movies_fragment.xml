@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MoviesFragment">
+    tools:context=".activities.MoviesFragment">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,5 +16,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/addMovie"
-        />
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:id="@+id/textNoMovies"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No movies available."
+        android:gravity="center"
+        android:visibility="gone"
+        android:textSize="18sp"
+        android:padding="16dp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
