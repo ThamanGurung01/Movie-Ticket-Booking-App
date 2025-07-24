@@ -23,6 +23,35 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseFirestore db;
     @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            db.collection("users").document(uid).get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            String role = documentSnapshot.getString("role");
+                            if ("admin".equals(role)) {
+                                startActivity(new Intent(LoginActivity.this, Dashboard.class));
+                            } else {
+                                startActivity(new Intent(LoginActivity.this, UserDashboard.class));
+                            }
+                            finish();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "User role not found. Please login again.", Toast.LENGTH_SHORT).show();
+                            FirebaseAuth.getInstance().signOut();
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(LoginActivity.this, "Failed to fetch user role.", Toast.LENGTH_SHORT).show();
+                    });
+        }
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
