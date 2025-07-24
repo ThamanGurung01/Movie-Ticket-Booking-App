@@ -1,6 +1,7 @@
 package com.app.movieticketbookingapp.activities;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,6 +45,32 @@ public class MoviesFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         movieList = new ArrayList<>();
         adapter = new MovieAdapter(movieList);
+        adapter.setOnItemClickListener(new MovieAdapter.OnItemClickListener() {
+            @Override
+            public void onEditClick(Movie movie) {
+                new EditMovieFragment(movie).show(getParentFragmentManager(), "EditMovieFragment");
+            }
+
+            @Override
+            public void onDeleteClick(Movie movie) {
+                new AlertDialog.Builder(requireContext())
+                        .setTitle("Confirm Delete")
+                        .setMessage("Are you sure you want to delete \"" + movie.getTitle() + "\"?")
+                        .setPositiveButton("Delete", (dialog, which) -> {
+                            db.collection("movies").document(movie.getId())
+                                    .delete()
+                                    .addOnSuccessListener(aVoid -> {
+                                        Toast.makeText(getContext(), "Deleted: " + movie.getTitle(), Toast.LENGTH_SHORT).show();
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Toast.makeText(getContext(), "Delete failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    });
+                        })
+                        .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                        .setCancelable(true)
+                        .show();
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
@@ -67,6 +94,7 @@ public class MoviesFragment extends Fragment {
                     for (DocumentSnapshot doc : value.getDocuments()) {
                         Movie movie = doc.toObject(Movie.class);
                         if (movie != null) {
+                            movie.setId(doc.getId());
                             movieList.add(movie);
                         }
                     }

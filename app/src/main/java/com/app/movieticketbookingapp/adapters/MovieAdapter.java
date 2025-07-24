@@ -1,6 +1,7 @@
 package com.app.movieticketbookingapp.adapters;
 
 import android.view.*;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,13 +13,24 @@ import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
     private List<Movie> movieList;
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onEditClick(Movie movie);
+        void onDeleteClick(Movie movie);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 
     public MovieAdapter(List<Movie> movieList) {
         this.movieList = movieList;
     }
 
-    public static class MovieViewHolder extends RecyclerView.ViewHolder {
+    public class MovieViewHolder extends RecyclerView.ViewHolder {
         TextView title, details, description, genres;
+        Button buttonEdit, buttonDelete;
 
         public MovieViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -26,6 +38,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             details = itemView.findViewById(R.id.textDetails);
             description = itemView.findViewById(R.id.textDescription);
             genres = itemView.findViewById(R.id.textGenres);
+            buttonEdit = itemView.findViewById(R.id.buttonEdit);
+            buttonDelete = itemView.findViewById(R.id.buttonDelete);
         }
 
         public void bind(Movie movie) {
@@ -33,6 +47,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             details.setText(movie.getYear() + " | " + movie.getLanguage() + " | " + movie.getDuration() + " mins");
             description.setText(movie.getDescription());
             genres.setText("Genres: " + String.join(", ", movie.getGenres()));
+
+            buttonEdit.setOnClickListener(v -> {
+                if (listener != null) listener.onEditClick(movie);
+            });
+
+            buttonDelete.setOnClickListener(v -> {
+                if (listener != null) listener.onDeleteClick(movie);
+            });
         }
     }
 
@@ -53,4 +75,3 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         return movieList.size();
     }
 }
-

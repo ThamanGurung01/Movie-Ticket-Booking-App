@@ -5,6 +5,7 @@ import com.google.firebase.Timestamp;
 import java.util.List;
 
 public class Movie {
+    private String id;
     private String title;
     private int year;
     private String language;
@@ -23,8 +24,13 @@ public class Movie {
         this.genres = genres;
         this.createdAt = createdAt;
     }
-
     // Getters and setters
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
     public String getTitle() {
         return title;
     }
@@ -80,4 +86,5 @@ public class Movie {
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
+
 }
