@@ -9,8 +9,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.app.movieticketbookingapp.R;
+import com.app.movieticketbookingapp.component.TopMenu;
 
-public class UserDashboard extends AppCompatActivity {
+public class UserDashboard extends TopMenu {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

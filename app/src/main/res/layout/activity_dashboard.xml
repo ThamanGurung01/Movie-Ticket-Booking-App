@@ -7,7 +7,14 @@
     android:padding="24dp"
     android:orientation="vertical"
     android:gravity="center">
-
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/dashboard_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/white"
+        android:layout_marginStart="40dp"
+        app:title=""
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
     <FrameLayout
         android:id="@+id/container_frame"
         android:layout_width="match_parent"
