@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:padding="16dp">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <TextView
+        android:id="@+id/textNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1."
+        android:textSize="16sp"
+        android:layout_marginEnd="8dp"
+        />
+    <TextView android:id="@+id/textName"
+        android:textStyle="bold"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="Title" android:textSize="18sp"/>
+</LinearLayout>
+    <TextView android:id="@+id/textEmail"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="example@gmail.com"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="10dp"
+        />
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        >-->
+<!--        <Button-->
+<!--            android:id="@+id/buttonEdit"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Edit"-->
+<!--            android:backgroundTint="#BB0BAA0B"-->
+<!--            />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/buttonDelete"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Delete"-->
+<!--            android:backgroundTint="#DF1818"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            />-->
+<!--    </LinearLayout>-->
+</LinearLayout>

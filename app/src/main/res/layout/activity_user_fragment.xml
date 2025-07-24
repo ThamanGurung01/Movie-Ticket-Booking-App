@@ -10,6 +10,22 @@
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="@string/nav_user"
+    android:text="User"
+    android:gravity="center"
     />
+    <TextView
+        android:id="@+id/textNoUsers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No Users available."
+        android:gravity="center"
+        android:visibility="gone"
+        android:textSize="18sp"
+        android:padding="16dp"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 </LinearLayout>

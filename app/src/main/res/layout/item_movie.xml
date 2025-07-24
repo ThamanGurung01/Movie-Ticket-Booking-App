@@ -5,22 +5,22 @@
 
     <TextView android:id="@+id/textTitle"
         android:textStyle="bold"
-        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:text="Title" android:textSize="18sp"/>
     <TextView android:id="@+id/textDetails"
-        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:text="Year | Language | Duration"/>
     <TextView android:id="@+id/textDescription"
-        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:text="Description" />
 
     <TextView android:id="@+id/textGenres"
-        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:text="Genres"
         android:layout_marginBottom="10dp"
         />
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginBottom="10dp"
