@@ -5,18 +5,41 @@
 
     <TextView android:id="@+id/textTitle"
         android:textStyle="bold"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
         android:text="Title" android:textSize="18sp"/>
-
     <TextView android:id="@+id/textDetails"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
         android:text="Year | Language | Duration"/>
-
     <TextView android:id="@+id/textDescription"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
         android:text="Description" />
 
     <TextView android:id="@+id/textGenres"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Genres" />
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="Genres"
+        android:layout_marginBottom="10dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        >
+        <Button
+            android:id="@+id/buttonEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:backgroundTint="#BB0BAA0B"
+            />
+
+        <Button
+            android:id="@+id/buttonDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:backgroundTint="#DF1818"
+            android:layout_marginStart="20dp"
+            />
+    </LinearLayout>
 </LinearLayout>
