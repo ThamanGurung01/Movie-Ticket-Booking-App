@@ -29,14 +29,14 @@ public class Home extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Home.this, login.class);
+                Intent intent = new Intent(Home.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Home.this, signup.class);
+                Intent intent = new Intent(Home.this, SignupActivity.class);
                 startActivity(intent);
             }
         });
