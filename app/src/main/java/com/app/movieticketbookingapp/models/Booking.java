@@ -3,6 +3,7 @@ package com.app.movieticketbookingapp.models;
 import com.google.firebase.Timestamp;
 
 public class Booking {
+    private String id;
     private String userEmail;
     private String movieDocId;
     private String movieTitle;
@@ -90,5 +91,11 @@ public class Booking {
 
     public void setBookingTime(Timestamp bookingTime) {
         this.bookingTime = bookingTime;
+    }
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id=id;
     }
 }

@@ -5,10 +5,26 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.BookingFragment">
+    android:orientation="vertical"
+    tools:context=".activities.CurrentBookedFragment">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="My Tickets"
+        android:gravity="center"
         />
+    <TextView
+        android:id="@+id/textNoBookings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No movies available."
+        android:gravity="center"
+        android:visibility="gone"
+        android:textSize="18sp"
+        android:padding="16dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
