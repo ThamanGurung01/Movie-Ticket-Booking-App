@@ -1,5 +1,6 @@
 package com.app.movieticketbookingapp.adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,7 @@ public class BookingDisplayAdapter extends RecyclerView.Adapter<BookingDisplayAd
             buttonCancel = itemView.findViewById(R.id.buttonCancelBooking);
         }
 
+        @SuppressLint("SetTextI18n")
         public void bind(Booking booking, OnBookingActionListener listener) {
             textTitle.setText(booking.getMovieTitle());
             textQuantity.setText("Quantity: " + booking.getQuantity());
