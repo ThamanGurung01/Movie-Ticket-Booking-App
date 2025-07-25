@@ -101,7 +101,8 @@ public class MoviesFragment extends Fragment {
                                         db.collection("movies").document(movie.getId())
                                                 .update("status", "completed")
                                                 .addOnSuccessListener(aVoid -> {
-                                                    Log.d("MoviesFragment", "Updated movie status to expired: " + movie.getTitle());
+                                                    updateRelatedBookingsStatus(movie.getId(), "completed");
+                                                    Log.d("MoviesFragment", "Updated movie status to Completed: " + movie.getTitle());
                                                 })
                                                 .addOnFailureListener(e -> {
                                                     Log.e("MoviesFragment", "Failed to update status: " + e.getMessage());
@@ -143,5 +144,22 @@ public class MoviesFragment extends Fragment {
                 .addOnFailureListener(e -> {
                     Toast.makeText(getContext(), "Error finding bookings: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
+    }
+    private void updateRelatedBookingsStatus(String movieId, String newStatus) {
+        db.collection("bookings")
+                .whereEqualTo("movieDocId", movieId)
+                .whereEqualTo("status", "active").get()
+                .addOnSuccessListener(querySnapshots -> {
+                    WriteBatch batch = db.batch();
+                    for (DocumentSnapshot doc : querySnapshots) {
+                        batch.update(doc.getReference(), "status", newStatus);
+                    }
+                    if (!querySnapshots.isEmpty()) {
+                        batch.commit()
+                                .addOnSuccessListener(aVoid -> Log.d("MoviesFragment", "Updated related bookings to " + newStatus))
+                                .addOnFailureListener(e -> Log.e("MoviesFragment", "Failed to update bookings: " + e.getMessage()));
+                    }
+                })
+                .addOnFailureListener(e -> Log.e("MoviesFragment", "Error fetching bookings: " + e.getMessage()));
     }
 }
