@@ -57,14 +57,7 @@ public class MoviesFragment extends Fragment {
                         .setTitle("Confirm Delete")
                         .setMessage("Are you sure you want to delete \"" + movie.getTitle() + "\"?")
                         .setPositiveButton("Delete", (dialog, which) -> {
-                            db.collection("movies").document(movie.getId())
-                                    .delete()
-                                    .addOnSuccessListener(aVoid -> {
-                                        Toast.makeText(getContext(), "Deleted: " + movie.getTitle(), Toast.LENGTH_SHORT).show();
-                                    })
-                                    .addOnFailureListener(e -> {
-                                        Toast.makeText(getContext(), "Delete failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    });
+                            deleteMovieAndBookings(movie.getId(), movie.getTitle());
                         })
                         .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
                         .setCancelable(true)
@@ -104,6 +97,31 @@ public class MoviesFragment extends Fragment {
                     } else {
                         textNoMovies.setVisibility(View.GONE);
                     }
+                });
+    }
+    private void deleteMovieAndBookings(String movieId, String movieTitle) {
+        db.collection("bookings")
+                .whereEqualTo("movieDocId", movieId)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    WriteBatch batch = db.batch();
+
+                    for (DocumentSnapshot bookingDoc : queryDocumentSnapshots.getDocuments()) {
+                        batch.delete(bookingDoc.getReference());
+                    }
+
+                    batch.delete(db.collection("movies").document(movieId));
+
+                    batch.commit()
+                            .addOnSuccessListener(unused -> {
+                                Toast.makeText(getContext(), "Deleted movie & related bookings: " + movieTitle, Toast.LENGTH_SHORT).show();
+                            })
+                            .addOnFailureListener(e -> {
+                                Toast.makeText(getContext(), "Error deleting: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            });
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getContext(), "Error finding bookings: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 }

@@ -27,7 +27,6 @@ public class AddMovieFragment extends DialogFragment {
     public void onStart() {
         super.onStart();
         if (getDialog() != null && getDialog().getWindow() != null) {
-            // Set full width
             getDialog().getWindow().setLayout(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
@@ -108,6 +107,7 @@ public class AddMovieFragment extends DialogFragment {
 
                 int totalTicketsCount = Integer.parseInt(totalTicketsStr);
                 double parseTicketPrice=Double.parseDouble(ticketPriceStr);
+                String status="active";
                 Movie movie = new Movie(
                         movieTitle,
                         Integer.parseInt(movieYear),
@@ -118,7 +118,8 @@ public class AddMovieFragment extends DialogFragment {
                         Timestamp.now(),
                         showTimestamp,
                         totalTicketsCount,
-                        parseTicketPrice
+                        parseTicketPrice,
+                        status
                 );
                 db.collection("movies").add(movie).addOnSuccessListener(documentReference -> {
                     Toast.makeText(getContext(), "Movie added!", Toast.LENGTH_SHORT).show();

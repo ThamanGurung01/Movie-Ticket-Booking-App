@@ -16,9 +16,10 @@ public class Movie {
     private Timestamp showTime;
     private int totalTickets;
     private double ticketPrice;
+    private String status;
     public Movie() {}
 
-    public Movie(String title, int year, String language, int duration, String description, List<String> genres,Timestamp createdAt, Timestamp showTime, int totalTickets,double ticketPrice) {
+    public Movie(String title, int year, String language, int duration, String description, List<String> genres,Timestamp createdAt, Timestamp showTime, int totalTickets,double ticketPrice,String status) {
         this.title = title;
         this.year = year;
         this.language = language;
@@ -29,6 +30,7 @@ public class Movie {
         this.showTime=showTime;
         this.totalTickets=totalTickets;
         this.ticketPrice=ticketPrice;
+        this.status=status;
     }
     // Getters and setters
     public String getId() {
@@ -36,6 +38,12 @@ public class Movie {
     }
     public void setId(String id) {
         this.id = id;
+    }
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
     }
     public String getTitle() {
         return title;
