@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:textStyle="bold"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Title" android:textSize="18sp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/textDetails"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Year | Language | Duration"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/textDescription"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Description" />
+
+    <TextView
+        android:id="@+id/textGenres"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Genres" />
+
+    <TextView
+        android:id="@+id/textShowTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Time" />
+
+    <TextView
+        android:id="@+id/textTotalTickets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Tickets" />
+
+    <TextView
+        android:id="@+id/textTicketPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ticket Price"
+        android:layout_marginBottom="10dp" />
+    <Button
+        android:id="@+id/buttonBookTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Book Ticket"
+        />
+</LinearLayout>
