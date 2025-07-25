@@ -12,13 +12,13 @@ public class Booking {
     private double totalPrice;
     private Timestamp showTime;
     private Timestamp bookingTime;
-
+    private String status;
     public Booking() {
     }
 
     public Booking(String userEmail, String movieDocId, String movieTitle,
                    int quantity, double pricePerTicket, double totalPrice,
-                   Timestamp showTime, Timestamp bookingTime) {
+                   Timestamp showTime, Timestamp bookingTime,String status) {
         this.userEmail = userEmail;
         this.movieDocId = movieDocId;
         this.movieTitle = movieTitle;
@@ -27,6 +27,13 @@ public class Booking {
         this.totalPrice = totalPrice;
         this.showTime = showTime;
         this.bookingTime = bookingTime;
+        this.status=status;
+    }
+    public String getStatus(){
+        return status;
+    }
+    public void setStatus(String status){
+        this.status=status;
     }
 
     public String getMovieDocId() {

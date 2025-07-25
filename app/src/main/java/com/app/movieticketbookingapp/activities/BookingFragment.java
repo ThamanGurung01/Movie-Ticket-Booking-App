@@ -59,7 +59,7 @@ public class BookingFragment extends Fragment {
     }
     @SuppressLint("NotifyDataSetChanged")
     private void fetchMovies() {
-        db.collection("movies").orderBy("createdAt", Query.Direction.DESCENDING)
+        db.collection("movies").whereEqualTo("status", "active").orderBy("createdAt", Query.Direction.DESCENDING)
                 .addSnapshotListener((value, error) -> {
                     if (error != null ||value==null) {
                         Log.e("Firestore","Error fetching data ",error);

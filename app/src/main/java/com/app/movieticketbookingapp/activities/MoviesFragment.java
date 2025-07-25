@@ -77,26 +77,45 @@ public class MoviesFragment extends Fragment {
     private void fetchMovies() {
         db.collection("movies").orderBy("createdAt", Query.Direction.DESCENDING)
                 .addSnapshotListener((value, error) -> {
-                    if (error != null ||value==null) {
-                        Log.e("Firestore","Error fetching data ",error);
+                    if (error != null || value == null) {
+                        Log.e("Firestore", "Error fetching data ", error);
                         Toast.makeText(getContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                         return;
                     }
 
                     movieList.clear();
+
+                    long currentTimeMillis = System.currentTimeMillis();
+                    long fiveHoursMillis = 5 * 60 * 60 * 1000;
+
                     for (DocumentSnapshot doc : value.getDocuments()) {
                         Movie movie = doc.toObject(Movie.class);
                         if (movie != null) {
                             movie.setId(doc.getId());
-                            movieList.add(movie);
+
+                            if (movie.getShowTime() != null) {
+                                long showTimeMillis = movie.getShowTime().toDate().getTime();
+
+                                if (currentTimeMillis > showTimeMillis + fiveHoursMillis) {
+                                    if (!"completed".equals(movie.getStatus())) {
+                                        db.collection("movies").document(movie.getId())
+                                                .update("status", "completed")
+                                                .addOnSuccessListener(aVoid -> {
+                                                    Log.d("MoviesFragment", "Updated movie status to expired: " + movie.getTitle());
+                                                })
+                                                .addOnFailureListener(e -> {
+                                                    Log.e("MoviesFragment", "Failed to update status: " + e.getMessage());
+                                                });
+                                        movie.setStatus("completed");
+                                    }
+                                }
+                            }
+                                movieList.add(movie);
                         }
                     }
+
                     adapter.notifyDataSetChanged();
-                    if (movieList.isEmpty()) {
-                        textNoMovies.setVisibility(View.VISIBLE);
-                    } else {
-                        textNoMovies.setVisibility(View.GONE);
-                    }
+                    textNoMovies.setVisibility(movieList.isEmpty() ? View.VISIBLE : View.GONE);
                 });
     }
     private void deleteMovieAndBookings(String movieId, String movieTitle) {
@@ -115,6 +134,7 @@ public class MoviesFragment extends Fragment {
                     batch.commit()
                             .addOnSuccessListener(unused -> {
                                 Toast.makeText(getContext(), "Deleted movie & related bookings: " + movieTitle, Toast.LENGTH_SHORT).show();
+                                fetchMovies();
                             })
                             .addOnFailureListener(e -> {
                                 Toast.makeText(getContext(), "Error deleting: " + e.getMessage(), Toast.LENGTH_SHORT).show();

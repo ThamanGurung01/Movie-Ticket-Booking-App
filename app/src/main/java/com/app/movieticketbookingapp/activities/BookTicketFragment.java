@@ -114,7 +114,7 @@ public class BookTicketFragment extends DialogFragment {
 
             String userEmail = user.getEmail();
             double totalPrice = quantity * movie.getTicketPrice();
-
+            String status = movie.getStatus() != null ? movie.getStatus() : "active";
             Booking booking = new Booking(
                     userEmail,
                     movie.getId(),
@@ -123,7 +123,8 @@ public class BookTicketFragment extends DialogFragment {
                     movie.getTicketPrice(),
                     totalPrice,
                     movie.getShowTime(),
-                    Timestamp.now()
+                    Timestamp.now(),
+                    status
             );
 
             FirebaseFirestore.getInstance().collection("bookings")

@@ -84,7 +84,7 @@ public class CurrentBookedFragment extends Fragment {
         String userEmail = currentUser.getEmail();
 
         db.collection("bookings")
-                .whereEqualTo("userEmail", userEmail)
+                .whereEqualTo("userEmail", userEmail).whereEqualTo("status", "active")
                 .addSnapshotListener((snapshots, error) -> {
                     if (error != null || snapshots == null) {
                         Toast.makeText(getContext(), "Error loading bookings", Toast.LENGTH_SHORT).show();

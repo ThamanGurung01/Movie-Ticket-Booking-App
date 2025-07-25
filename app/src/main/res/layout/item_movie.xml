@@ -42,9 +42,13 @@
         android:id="@+id/textTicketPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ticket Price"
+        android:text="Ticket Price"/>
+    <TextView
+        android:id="@+id/textStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
         android:layout_marginBottom="10dp" />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

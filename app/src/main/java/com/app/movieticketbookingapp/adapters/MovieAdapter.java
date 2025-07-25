@@ -31,7 +31,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     }
 
     public class MovieViewHolder extends RecyclerView.ViewHolder {
-        TextView title, details, description, genres,showTime,totalTickets,ticketPrice;
+        TextView title, details, description, genres,showTime,totalTickets,ticketPrice,status;
         Button buttonEdit, buttonDelete;
 
         public MovieViewHolder(@NonNull View itemView) {
@@ -45,6 +45,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             showTime = itemView.findViewById(R.id.textShowTime);
             totalTickets = itemView.findViewById(R.id.textTotalTickets);
             ticketPrice=itemView.findViewById(R.id.textTicketPrice);
+            status=itemView.findViewById(R.id.textStatus);
         }
 
         public void bind(Movie movie) {
@@ -56,6 +57,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
             showTime.setText("Show Time: " + sdf.format(movie.getShowTime().toDate()));
             totalTickets.setText("Tickets Available: " + movie.getTotalTickets());
+            status.setText("Status: "+movie.getStatus());
             buttonEdit.setOnClickListener(v -> {
                 if (listener != null) listener.onEditClick(movie);
             });
