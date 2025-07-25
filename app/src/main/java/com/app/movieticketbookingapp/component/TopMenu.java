@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.app.movieticketbookingapp.activities.ProfileActivity;
 import com.app.movieticketbookingapp.R;
 import com.app.movieticketbookingapp.activities.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,7 +32,7 @@ public class TopMenu extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_profile) {
-            Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, ProfileActivity.class));
             return true;
         } else if (id == R.id.menu_logout) {
             FirebaseAuth.getInstance().signOut();
