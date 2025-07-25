@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nav_movies"
-        android:gravity="center"
+        android:gravity="center"        android:textSize="18sp"
+        android:textStyle="bold"
         />
     <TextView
         android:id="@+id/textNoMovies"

@@ -5,17 +5,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!-- Toolbar with no extra top gap -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/profile_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
         android:title="Profile"
-        android:titleTextColor="@android:color/white"/>
+        android:titleTextColor="@android:color/black"
+        android:elevation="4dp" />
 
+    <!-- Main content layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:padding="20dp">
 
@@ -27,6 +31,7 @@
             android:textSize="25sp"
             android:textStyle="bold"
             android:layout_gravity="center" />
+
         <TextView
             android:id="@+id/textName"
             android:layout_width="wrap_content"

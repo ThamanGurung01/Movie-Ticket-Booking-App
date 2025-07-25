@@ -10,10 +10,10 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/dashboard_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:background="@color/white"
-        android:layout_marginStart="40dp"
-        app:title=""
+        app:title="Dashboard"
+        android:layout_marginTop="10dp"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <FrameLayout
@@ -21,7 +21,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="24dp" />
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="24dp"
+        android:paddingTop="0dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav"
