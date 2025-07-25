@@ -3,35 +3,59 @@
     android:layout_width="match_parent" android:layout_height="wrap_content"
     android:orientation="vertical" android:padding="16dp">
 
-    <TextView android:id="@+id/textTitle"
+    <TextView
+        android:id="@+id/textTitle"
         android:textStyle="bold"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Title" android:textSize="18sp"/>
-    <TextView android:id="@+id/textDetails"
+        android:text="Title" android:textSize="18sp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/textDetails"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Year | Language | Duration"/>
-    <TextView android:id="@+id/textDescription"
+        android:text="Year | Language | Duration"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/textDescription"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:text="Description" />
 
-    <TextView android:id="@+id/textGenres"
+    <TextView
+        android:id="@+id/textGenres"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Genres"
-        android:layout_marginBottom="10dp"
-        />
+        android:text="Genres" />
+
+    <TextView
+        android:id="@+id/textShowTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Time" />
+
+    <TextView
+        android:id="@+id/textTotalTickets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Tickets" />
+
+    <TextView
+        android:id="@+id/textTicketPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ticket Price"
+        android:layout_marginBottom="10dp" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="10dp"
-        >
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/buttonEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Edit"
-            android:backgroundTint="#BB0BAA0B"
-            />
+            android:backgroundTint="#BB0BAA0B" />
 
         <Button
             android:id="@+id/buttonDelete"
@@ -39,7 +63,6 @@
             android:layout_height="wrap_content"
             android:text="Delete"
             android:backgroundTint="#DF1818"
-            android:layout_marginStart="20dp"
-            />
+            android:layout_marginStart="20dp" />
     </LinearLayout>
 </LinearLayout>

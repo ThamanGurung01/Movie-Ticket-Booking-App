@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.movieticketbookingapp.models.Movie;
 import com.app.movieticketbookingapp.R;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
     private List<Movie> movieList;
@@ -29,7 +31,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     }
 
     public class MovieViewHolder extends RecyclerView.ViewHolder {
-        TextView title, details, description, genres;
+        TextView title, details, description, genres,showTime,totalTickets,ticketPrice;
         Button buttonEdit, buttonDelete;
 
         public MovieViewHolder(@NonNull View itemView) {
@@ -40,6 +42,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             genres = itemView.findViewById(R.id.textGenres);
             buttonEdit = itemView.findViewById(R.id.buttonEdit);
             buttonDelete = itemView.findViewById(R.id.buttonDelete);
+            showTime = itemView.findViewById(R.id.textShowTime);
+            totalTickets = itemView.findViewById(R.id.textTotalTickets);
+            ticketPrice=itemView.findViewById(R.id.textTicketPrice);
         }
 
         public void bind(Movie movie) {
@@ -47,7 +52,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             details.setText(movie.getYear() + " | " + movie.getLanguage() + " | " + movie.getDuration() + " mins");
             description.setText(movie.getDescription());
             genres.setText("Genres: " + String.join(", ", movie.getGenres()));
-
+            ticketPrice.setText("Ticket Price: Rs. " + movie.getTicketPrice());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+            showTime.setText("Show Time: " + sdf.format(movie.getShowTime().toDate()));
+            totalTickets.setText("Tickets Available: " + movie.getTotalTickets());
             buttonEdit.setOnClickListener(v -> {
                 if (listener != null) listener.onEditClick(movie);
             });

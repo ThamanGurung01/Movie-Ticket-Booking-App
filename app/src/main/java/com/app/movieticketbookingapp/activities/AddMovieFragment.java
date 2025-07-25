@@ -1,6 +1,8 @@
 package com.app.movieticketbookingapp.activities;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.*;
@@ -12,9 +14,15 @@ import com.app.movieticketbookingapp.R;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.Objects;
 
 public class AddMovieFragment extends DialogFragment {
+    Calendar calendar;
+    EditText dateTime;
     @Override
     public void onStart() {
         super.onStart();
@@ -37,8 +45,15 @@ public class AddMovieFragment extends DialogFragment {
             EditText language = view.findViewById(R.id.editTextLanguage);
             EditText duration = view.findViewById(R.id.editTextDuration);
             EditText description = view.findViewById(R.id.editTextDescription);
+            dateTime = view.findViewById(R.id.editDateTime);
+            EditText tickets = view.findViewById(R.id.totalTickets);
+            EditText ticketPrice = view.findViewById(R.id.editTextTicketPrice);
             Button save = view.findViewById(R.id.buttonSave);
             Button cancel = view.findViewById(R.id.buttonCancel);
+
+            calendar = Calendar.getInstance();
+
+            dateTime.setOnClickListener(v -> showDateTimePicker());
 
             TextView genreTextView = view.findViewById(R.id.textViewGenrePicker);
 
@@ -74,10 +89,25 @@ public class AddMovieFragment extends DialogFragment {
                 String movieLanguage = language.getText().toString().trim();
                 String movieDuration = duration.getText().toString().trim();
                 String movieDescription = description.getText().toString().trim();
-                if (movieTitle.isEmpty() || movieYear.isEmpty() || movieLanguage.isEmpty() || movieDuration.isEmpty() || movieDescription.isEmpty() || selectedList.isEmpty()) {
-                    Toast.makeText(getContext(), "Fill in both fields", Toast.LENGTH_SHORT).show();
+                String showTimeString = dateTime.getText().toString().trim();
+                String totalTicketsStr = tickets.getText().toString().trim();
+                String ticketPriceStr = ticketPrice.getText().toString().trim();
+                if (movieTitle.isEmpty() || movieYear.isEmpty() || movieLanguage.isEmpty() || movieDuration.isEmpty() ||
+                        movieDescription.isEmpty() || selectedList.isEmpty() || showTimeString.isEmpty() || totalTicketsStr.isEmpty() || ticketPriceStr.isEmpty()) {
+                    Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+                Timestamp showTimestamp;
+                try {
+                    showTimestamp = new Timestamp(Objects.requireNonNull(sdf.parse(showTimeString)));
+                } catch (Exception e) {
+                    Toast.makeText(getContext(), "Invalid date format", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                int totalTicketsCount = Integer.parseInt(totalTicketsStr);
+                double parseTicketPrice=Double.parseDouble(ticketPriceStr);
                 Movie movie = new Movie(
                         movieTitle,
                         Integer.parseInt(movieYear),
@@ -85,7 +115,10 @@ public class AddMovieFragment extends DialogFragment {
                         Integer.parseInt(movieDuration),
                         movieDescription,
                         selectedList,
-                        Timestamp.now()
+                        Timestamp.now(),
+                        showTimestamp,
+                        totalTicketsCount,
+                        parseTicketPrice
                 );
                 db.collection("movies").add(movie).addOnSuccessListener(documentReference -> {
                     Toast.makeText(getContext(), "Movie added!", Toast.LENGTH_SHORT).show();
@@ -107,5 +140,23 @@ public class AddMovieFragment extends DialogFragment {
             System.out.println(e);
             return null;
         }
+    }
+    private void showDateTimePicker() {
+        // Show DatePicker first
+        new DatePickerDialog(requireContext(), (view, year, month, dayOfMonth) -> {
+            calendar.set(Calendar.YEAR, year);
+            calendar.set(Calendar.MONTH, month);
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+            new TimePickerDialog(getContext(), (view1, hourOfDay, minute) -> {
+                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                calendar.set(Calendar.MINUTE, minute);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+                dateTime.setText(sdf.format(calendar.getTime()));
+
+            }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false).show();
+
+        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 }

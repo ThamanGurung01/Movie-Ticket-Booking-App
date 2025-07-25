@@ -13,9 +13,12 @@ public class Movie {
     private String description;
     private List<String> genres;
     private Timestamp createdAt;
+    private Timestamp showTime;
+    private int totalTickets;
+    private double ticketPrice;
     public Movie() {}
 
-    public Movie(String title, int year, String language, int duration, String description, List<String> genres,Timestamp createdAt) {
+    public Movie(String title, int year, String language, int duration, String description, List<String> genres,Timestamp createdAt, Timestamp showTime, int totalTickets,double ticketPrice) {
         this.title = title;
         this.year = year;
         this.language = language;
@@ -23,6 +26,9 @@ public class Movie {
         this.description = description;
         this.genres = genres;
         this.createdAt = createdAt;
+        this.showTime=showTime;
+        this.totalTickets=totalTickets;
+        this.ticketPrice=ticketPrice;
     }
     // Getters and setters
     public String getId() {
@@ -79,6 +85,8 @@ public class Movie {
         this.genres = genres;
     }
 
+    public double getTicketPrice(){return ticketPrice;}
+    public void setTicketPrice(double ticketPrice){this.ticketPrice=ticketPrice;}
     public Timestamp getCreatedAt() {
         return createdAt;
     }
@@ -86,5 +94,18 @@ public class Movie {
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
+    public Timestamp getShowTime() {
+        return showTime;
+    }
 
+    public void setShowTime(Timestamp showTime) {
+        this.showTime = showTime;
+    }
+    public int getTotalTickets(){
+        return totalTickets;
+    }
+
+    public void setTotalTickets(int totalTickets) {
+        this.totalTickets = totalTickets;
+    }
 }
